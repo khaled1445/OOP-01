@@ -19,6 +19,15 @@
 
             #endregion
 
+            #region Question02
+            //a) 1- all fields are public so it's not prevented and anyone can modify it
+            //2- there is no validation so the value can be negative 
+            //3- the input in description var can bee null 
+
+            //b) if you used private keywork instead of public now the code outside the struct canno't be acssessed outside the 
+            // struct so you can put the setters and getters to validate all fields  
+            #endregion
+
             #endregion
         }
 
