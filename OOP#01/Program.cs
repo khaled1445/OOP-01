@@ -29,6 +29,70 @@
             #endregion
 
             #endregion
+
+
+            #region Part 02 : Practical (Smart Delivery Management System)
+
+            static void Main(string[] args)
+            {
+                DeliveryCenter center = new DeliveryCenter();
+
+                for (int i = 1; i <= 3; i++)
+                {
+                    Console.WriteLine($"Enter Shipment {i} Data");
+
+                    Console.Write("Tracking Code: ");
+                    string trackingCode = Console.ReadLine();
+
+                    Console.Write("Description: ");
+                    string description = Console.ReadLine();
+
+                    Console.Write("Weight: ");
+                    double weight = double.Parse(Console.ReadLine());
+
+                    Console.Write("Delivery Fee: ");
+                    decimal deliveryFee = decimal.Parse(Console.ReadLine());
+
+                    Console.Write("City: ");
+                    string city = Console.ReadLine();
+
+                    Console.Write("Street: ");
+                    string street = Console.ReadLine();
+
+                    Console.Write("Building Number: ");
+                    int buildingNumber = int.Parse(Console.ReadLine());
+
+                    DeliveryAddress address = new DeliveryAddress(city, street, buildingNumber);
+                    Shipment shipment = new Shipment(trackingCode, description, weight, deliveryFee, address);
+
+                    center.AddShipment(shipment);
+                    Console.WriteLine();
+                }
+
+                for (int i = 0; i < 3; i++)
+                {
+                    center[i].PrintShipment();
+                    Console.WriteLine();
+                }
+
+                Console.Write("Enter a tracking code to search: ");
+                string searchCode = Console.ReadLine();
+
+                Shipment found = center[searchCode];
+
+                if (found.TrackingCode != null)
+                    found.PrintShipment();
+                else
+                    Console.WriteLine("Shipment not found");
+
+                DeliveryAddress original = new DeliveryAddress("Beni suef", "ElEmam ElShafie", 15);
+                DeliveryAddress copy = original;
+                copy.Street = "ElBosta";
+
+                Console.WriteLine($"Original Address: {original.GetFullAddress()}");
+                Console.WriteLine($"Copied Address: {copy.GetFullAddress()}");
+            }
+            #endregion
         }
 
     }
