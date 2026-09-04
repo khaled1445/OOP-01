@@ -18,7 +18,7 @@ namespace OOP_01
         {
             get 
             {
-                return TrackingCode;
+                return trackingCode;
             }
             private set 
             {
@@ -27,7 +27,8 @@ namespace OOP_01
                     Console.WriteLine("TrackingCode cannot be empty or whitespace");
                     return;
                 }
-                    trackingCode = value;
+                trackingCode = value;
+                    
             }
         }
 
@@ -35,7 +36,7 @@ namespace OOP_01
         {
             get
             {
-                return Description; 
+                return description; 
             }
             set 
             {
@@ -70,7 +71,7 @@ namespace OOP_01
         {
             get 
             {
-                return DeliveryFee; 
+                return deliveryFee; 
             }
             private set 
             {
@@ -109,7 +110,7 @@ namespace OOP_01
 
         public void PrintShipment() 
         {
-            Console.WriteLine($"Traching Code: {trackingCode}");
+            Console.WriteLine($"Traching Code: {TrackingCode}");
             Console.WriteLine($"Description: {Description}");
             Console.WriteLine($"Weight: {Weight} KG");
             Console.WriteLine($"DeliveryFee: {DeliveryFee} EGP");

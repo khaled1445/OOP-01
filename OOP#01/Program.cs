@@ -33,65 +33,90 @@
 
             #region Part 02 : Practical (Smart Delivery Management System)
 
-            static void Main(string[] args)
+            
+           
+            
+            DeliveryCenter deliveryCenter01 = new DeliveryCenter();
+
+            for (int i = 0; i < 3; i++) 
             {
-                DeliveryCenter center = new DeliveryCenter();
+                Console.WriteLine($"please enter Shipment{i} ");
+                
+                Console.WriteLine("Traking Code:");
+                string trackingCode = Console.ReadLine();
+                
+                Console.WriteLine("==============================");
+                
+                Console.WriteLine("Description:");
+                string description = Console.ReadLine();
 
-                for (int i = 1; i <= 3; i++)
-                {
-                    Console.WriteLine($"Enter Shipment {i} Data");
+                Console.WriteLine("==============================");
 
-                    Console.Write("Tracking Code: ");
-                    string trackingCode = Console.ReadLine();
+                Console.WriteLine("Weight:");
+                double weight = double.Parse(Console.ReadLine());
 
-                    Console.Write("Description: ");
-                    string description = Console.ReadLine();
+                Console.WriteLine("==============================");
 
-                    Console.Write("Weight: ");
-                    double weight = double.Parse(Console.ReadLine());
+                Console.WriteLine("Delivery Fee:");
+                decimal deliveryFee = decimal.Parse(Console.ReadLine());
 
-                    Console.Write("Delivery Fee: ");
-                    decimal deliveryFee = decimal.Parse(Console.ReadLine());
+                Console.WriteLine("==============================");
 
-                    Console.Write("City: ");
-                    string city = Console.ReadLine();
+                Console.WriteLine("City:");
+                string city = Console.ReadLine();
 
-                    Console.Write("Street: ");
-                    string street = Console.ReadLine();
+                Console.WriteLine("==============================");
 
-                    Console.Write("Building Number: ");
-                    int buildingNumber = int.Parse(Console.ReadLine());
+                Console.WriteLine("Street:");
+                string street = Console.ReadLine();
 
-                    DeliveryAddress address = new DeliveryAddress(city, street, buildingNumber);
-                    Shipment shipment = new Shipment(trackingCode, description, weight, deliveryFee, address);
+                Console.WriteLine("==============================");
 
-                    center.AddShipment(shipment);
-                    Console.WriteLine();
-                }
+                Console.WriteLine("Building Number:");
+                int buildingNumber = int.Parse(Console.ReadLine());
 
-                for (int i = 0; i < 3; i++)
-                {
-                    center[i].PrintShipment();
-                    Console.WriteLine();
-                }
+                Console.WriteLine("==============================");
 
-                Console.Write("Enter a tracking code to search: ");
-                string searchCode = Console.ReadLine();
+                DeliveryAddress deliveryAddress = new DeliveryAddress(city,street,buildingNumber);
+                Shipment shipment = new Shipment(trackingCode,description,weight,deliveryFee,deliveryAddress);
 
-                Shipment found = center[searchCode];
+                bool added = deliveryCenter01.AddShipment(shipment);
+                Console.WriteLine(added ? "Shipment added successfully." : "Delivery center is full.");
+                Console.WriteLine();
 
-                if (found.TrackingCode != null)
-                    found.PrintShipment();
-                else
-                    Console.WriteLine("Shipment not found");
-
-                DeliveryAddress original = new DeliveryAddress("Beni suef", "ElEmam ElShafie", 15);
-                DeliveryAddress copy = original;
-                copy.Street = "ElBosta";
-
-                Console.WriteLine($"Original Address: {original.GetFullAddress()}");
-                Console.WriteLine($"Copied Address: {copy.GetFullAddress()}");
             }
+            Console.WriteLine("All Shipments");
+            for (int i = 0; i < 3; i++) 
+            {
+                deliveryCenter01[i].PrintShipment();
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Enter the Tracking Code to Search");
+            string searchCode = Console.ReadLine();
+
+            Shipment found = deliveryCenter01[searchCode];
+
+            if (found.TrackingCode != null)
+            {
+                Console.WriteLine($"shipment found {found.TrackingCode} - {found.Description}");
+            }
+            else
+                Console.WriteLine("shipment wasn't found");
+                    
+
+                DeliveryAddress originalDA = new DeliveryAddress("Beni Suef", "Bosta", 6);
+                DeliveryAddress copyDA = originalDA;
+
+                Console.WriteLine("=================================");
+                Console.WriteLine("struct copy test");
+                copyDA.City = "Cairo";
+                copyDA.Street = "faisal";
+                copyDA.BuildingNumber = 10;
+                Console.WriteLine($"Original: " + originalDA.GetFullAddress());
+                Console.WriteLine($"Copy: " + copyDA.GetFullAddress());
+
+
             #endregion
         }
 
